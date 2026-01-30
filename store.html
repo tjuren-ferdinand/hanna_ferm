@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store - Hanna Ferm Official</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <style>
+        :root {
+            --accent-color: #ff6b9d; /* Soft neon pink */
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        
+        .serif-heading {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .accent-text {
+            color: var(--accent-color);
+        }
+        
+        .accent-bg {
+            background-color: var(--accent-color);
+        }
+        
+        .hover-scale {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .hover-scale:hover {
+            transform: scale(1.05);
+        }
+        
+        .product-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(255, 107, 157, 0.2);
+            border-color: rgba(255, 107, 157, 0.3);
+        }
+        
+        .bundle-card {
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 107, 157, 0.3);
+            box-shadow: 0 0 40px rgba(255, 107, 157, 0.2);
+            animation: softGlow 3s ease-in-out infinite alternate;
+        }
+        
+        @keyframes softGlow {
+            0% {
+                box-shadow: 0 0 30px rgba(255, 107, 157, 0.2);
+            }
+            100% {
+                box-shadow: 0 0 50px rgba(255, 107, 157, 0.4);
+            }
+        }
+        
+        .bundle-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(255, 107, 157, 0.4);
+        }
+        
+        .price-tag {
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+        
+        .preorder-btn {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 12px 24px;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+        
+        .preorder-btn:hover {
+            background: var(--accent-color);
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+        
+        .floating-back-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: rgba(255, 107, 157, 0.9);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 50px;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        .floating-back-btn:hover {
+            background: var(--accent-color);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.4);
+        }
+        
+        .navbar-transparent {
+            background: transparent;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            border: none;
+        }
+        
+        .navbar-scrolled {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-black text-white overflow-x-hidden">
+    
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300 navbar-transparent">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-bold serif-heading">HANNA FERM</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html#home" class="hover:text-pink-400 transition-colors">Home</a>
+                    <a href="index.html#discography" class="hover:text-pink-400 transition-colors">Music</a>
+                    <a href="index.html#tour" class="hover:text-pink-400 transition-colors">Tour</a>
+                    <a href="index.html#visuals" class="hover:text-pink-400 transition-colors">Visuals</a>
+                    <a href="store.html" class="text-pink-400 font-semibold">Store</a>
+                    <a href="index.html#media" class="hover:text-pink-400 transition-colors">Gallery</a>
+                    <a href="index.html#about" class="hover:text-pink-400 transition-colors">About</a>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden navbar-transparent">
+            <div class="px-6 py-4 space-y-4">
+                <a href="index.html#home" class="block hover:text-pink-400 transition-colors">Home</a>
+                <a href="index.html#discography" class="block hover:text-pink-400 transition-colors">Music</a>
+                <a href="index.html#tour" class="block hover:text-pink-400 transition-colors">Tour</a>
+                <a href="index.html#visuals" class="block hover:text-pink-400 transition-colors">Visuals</a>
+                <a href="store.html" class="block text-pink-400 font-semibold">Store</a>
+                <a href="index.html#media" class="block hover:text-pink-400 transition-colors">Gallery</a>
+                <a href="index.html#about" class="block hover:text-pink-400 transition-colors">About</a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Store Hero Section -->
+    <section class="min-h-screen flex items-center justify-center relative">
+        <div class="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold serif-heading mb-6" data-aos="fade-up">
+                OFFICIAL <span class="accent-text">STORE</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-300 mb-12" data-aos="fade-up" data-aos-delay="200">
+                from frame to finish.
+            </p>
+        </div>
+    </section>
+    
+    <!-- Complete Discography Section -->
+    <section class="py-20 bg-gray-950">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-bold serif-heading mb-4 text-center" data-aos="fade-up">
+                Complete <span class="accent-text">Discography</span>
+            </h2>
+            <p class="text-gray-400 text-center mb-16" data-aos="fade-up" data-aos-delay="100">
+                Every release from 2018 to present
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Never Mine (2018) -->
+                <div class="product-card rounded-xl overflow-hidden border border-gray-800" data-aos="fade-up" data-aos-delay="100">
+                    <div class="h-48 bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center">
+                        <img src="never-mine.jpg" alt="Never Mine" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-bold mb-1">Never Mine</h3>
+                        <p class="text-sm text-gray-400 mb-1">2018</p>
+                        <p class="text-xs text-gray-500 mb-4 lowercase">pop/r&b/soul</p>
+                        <p class="text-xs text-gray-600 mb-4">Produced by Jimmy Jansson</p>
+                        <a href="https://www.discogs.com/release/31555483-Hanna-Ferm-Never-Mine" target="_blank" class="preorder-btn w-full text-sm py-2">
+                            GET ACCESS
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Hold You with LIAMOO (2019) -->
+                <div class="product-card rounded-xl overflow-hidden border border-gray-800" data-aos="fade-up" data-aos-delay="150">
+                    <div class="h-48 bg-gradient-to-br from-blue-600 to-teal-600 flex items-center justify-center">
+                        <img src="hold-you.jpg" alt="Hold You" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-bold mb-1">Hold You</h3>
+                        <p class="text-sm text-gray-400 mb-1">2019</p>
+                        <p class="text-xs text-gray-500 mb-4 lowercase">with LIAMOO • pop</p>
+                        <p class="text-xs text-gray-600 mb-4">Produced by Anton Hård Af Segerstad</p>
+                        <a href="https://www.discogs.com/release/13647757-Hanna-Ferm-LIAMOO-Hold-You" target="_blank" class="preorder-btn w-full text-sm py-2">
+                            GET ACCESS
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Outta Breath (2019) -->
+                <div class="product-card rounded-xl overflow-hidden border border-gray-800" data-aos="fade-up" data-aos-delay="200">
+                    <div class="h-48 bg-gradient-to-br from-green-600 to-blue-600 flex items-center justify-center">
+                        <img src="outta-breath.jpg" alt="Outta Breath" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-bold mb-1">Outta Breath</h3>
+                        <p class="text-sm text-gray-400 mb-1">2019</p>
+                        <p class="text-xs text-gray-500 mb-4 lowercase">pop</p>
+                        <p class="text-xs text-gray-600 mb-4">Produced by Jakob Redtzer & William Jerner</p>
+                        <a href="https://www.discogs.com/release/14243637-Hanna-Ferm-Outta-Breath" target="_blank" class="preorder-btn w-full text-sm py-2">
+                            GET ACCESS
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- I Met Somebody with John De Sohn (2020) -->
+                <div class="product-card rounded-xl overflow-hidden border border-gray-800" data-aos="fade-up" data-aos-delay="250">
+                    <div class="h-48 bg-gradient-to-br from-orange-600 to-red-600 flex items-center justify-center">
+                        <img src="i-met-somebody.jpg" alt="I Met Somebody" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-bold mb-1">I Met Somebody</h3>
+                        <p class="text-sm text-gray-400 mb-1">2020</p>
+                        <p class="text-xs text-gray-500 mb-4 lowercase">with John De Sohn • dance-pop</p>
+                        <p class="text-xs text-gray-600 mb-4">Produced by Björn Johnsson</p>
+                        <a href="https://www.discogs.com/release/16046669-John-De-Sohn-Hanna-Ferm-I-Met-Somebody" target="_blank" class="preorder-btn w-full text-sm py-2">
+                            GET ACCESS
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Sweet Temptation (2020) -->
+                <div class="product-card rounded-xl overflow-hidden border border-gray-800" data-aos="fade-up" data-aos-delay="300">
+                    <div class="h-48 bg-gradient-to-br from-pink-600 to-purple-600 flex items-center justify-center">
+                        <img src="sweet-temptation.jpg" alt="Sweet Temptation" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-bold mb-1">Sweet Temptation</h3>
+                        <p class="text-sm text-gray-400 mb-1">2020</p>
+                        <p class="text-xs text-gray-500 mb-4 lowercase">pop</p>
+                        <p class="text-xs text-gray-600 mb-4">Produced by Dino Medanhodzic</p>
+                        <a href="https://www.discogs.com/release/16120216-Hanna-Ferm-Sweet-Temptation" target="_blank" class="preorder-btn w-full text-sm py-2">
+                            GET ACCESS
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Tell It To My Heart with ZYNN (2020) -->
+                <div class="product-card rounded-xl overflow-hidden border border-gray-800" data-aos="fade-up" data-aos-delay="350">
+                    <div class="h-48 bg-gradient-to-br from-indigo-600 to-purple-600 flex items-center justify-center">
+                        <img src="tell-it-to-my-heart.jpg" alt="Tell It To My Heart" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-bold mb-1">Tell It To My Heart</h3>
+                        <p class="text-sm text-gray-400 mb-1">2020</p>
+                        <p class="text-xs text-gray-500 mb-4 lowercase">with ZYNN • dance-pop</p>
+                        <p class="text-xs text-gray-600 mb-4">Produced by ZYNN</p>
+                        <a href="https://www.discogs.com/release/16546158-ZYNN-Ft-Hanna-Ferm-Tell-It-To-My-Heart" target="_blank" class="preorder-btn w-full text-sm py-2">
+                            GET ACCESS
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Brave (2020) -->
+                <div class="product-card rounded-xl overflow-hidden border border-gray-800" data-aos="fade-up" data-aos-delay="400">
+                    <div class="h-48 bg-gradient-to-br from-red-600 to-orange-600 flex items-center justify-center">
+                        <img src="brave.jpg" alt="Brave" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-bold mb-1">Brave</h3>
+                        <p class="text-sm text-gray-400 mb-1">2020</p>
+                        <p class="text-xs text-gray-500 mb-4 lowercase">pop • melodifestivalen</p>
+                        <p class="text-xs text-gray-600 mb-4">Melodifestivalen Entry</p>
+                        <a href="https://www.discogs.com/release/14826068-Hanna-Ferm-Brave" target="_blank" class="preorder-btn w-full text-sm py-2">
+                            GET ACCESS
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Aldrig Nånsin (2021) -->
+                <div class="product-card rounded-xl overflow-hidden border border-gray-800" data-aos="fade-up" data-aos-delay="450">
+                    <div class="h-48 bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center">
+                        <img src="aldrig-nansin.jpg" alt="Aldrig Nånsin" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-bold mb-1">Aldrig Nånsin</h3>
+                        <p class="text-sm text-gray-400 mb-1">2021</p>
+                        <p class="text-xs text-gray-500 mb-4 lowercase">pop</p>
+                        <p class="text-xs text-gray-600 mb-4">Produced by Lukas Piironen & Niklas Carson Mattsson</p>
+                        <a href="https://www.discogs.com/release/31462856-Hanna-Ferm-Aldrig-N%C3%A5nsin" target="_blank" class="preorder-btn w-full text-sm py-2">
+                            GET ACCESS
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Vet Hon Om? (2023) -->
+                <div class="product-card rounded-xl overflow-hidden border border-gray-800" data-aos="fade-up" data-aos-delay="500">
+                    <div class="h-48 bg-gradient-to-br from-teal-600 to-green-600 flex items-center justify-center">
+                        <img src="vet-hon-om.jpg" alt="Vet Hon Om?" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-bold mb-1">Vet Hon Om?</h3>
+                        <p class="text-sm text-gray-400 mb-1">2023</p>
+                        <p class="text-xs text-gray-500 mb-4 lowercase">pop</p>
+                        <p class="text-xs text-gray-600 mb-4">Produced by Natali Noor</p>
+                        <a href="https://www.discogs.com/release/31461857-Hanna-Ferm-Vet-Hon-Om" target="_blank" class="preorder-btn w-full text-sm py-2">
+                            GET ACCESS
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Valborg (2023) -->
+                <div class="product-card rounded-xl overflow-hidden border border-gray-800" data-aos="fade-up" data-aos-delay="550">
+                    <div class="h-48 bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center">
+                        <img src="valborg.jpg" alt="Valborg" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-bold mb-1">Valborg</h3>
+                        <p class="text-sm text-gray-400 mb-1">2023</p>
+                        <p class="text-xs text-gray-500 mb-4 lowercase">pop</p>
+                        <p class="text-xs text-gray-600 mb-4">Composed by Håkan Hellström • Produced by Anton Engdahl</p>
+                        <a href="https://www.discogs.com/release/31461740-Hanna-Ferm-Valborg" target="_blank" class="preorder-btn w-full text-sm py-2">
+                            GET ACCESS
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Undantag (2023) -->
+                <div class="product-card rounded-xl overflow-hidden border border-gray-800" data-aos="fade-up" data-aos-delay="600">
+                    <div class="h-48 bg-gradient-to-br from-gray-600 to-gray-800 flex items-center justify-center">
+                        <img src="undantag.jpg" alt="Undantag" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-bold mb-1">Undantag</h3>
+                        <p class="text-sm text-gray-400 mb-1">2023</p>
+                        <p class="text-xs text-gray-500 mb-4 lowercase">pop</p>
+                        <p class="text-xs text-gray-600 mb-4">Produced by Anton Engdahl</p>
+                        <a href="https://www.discogs.com/release/31555567-Hanna-Ferm-Undantag" target="_blank" class="preorder-btn w-full text-sm py-2">
+                            GET ACCESS
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Mellanrum (2024) -->
+                <div class="product-card rounded-xl overflow-hidden border border-gray-800" data-aos="fade-up" data-aos-delay="650">
+                    <div class="h-48 bg-gradient-to-br from-indigo-600 to-blue-600 flex items-center justify-center">
+                        <img src="mellanrum.jpg" alt="Mellanrum" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-bold mb-1">Mellanrum</h3>
+                        <p class="text-sm text-gray-400 mb-1">2024</p>
+                        <p class="text-xs text-gray-500 mb-4 lowercase">pop</p>
+                        <p class="text-xs text-gray-600 mb-4">Produced by Aron Wyme</p>
+                        <a href="https://www.discogs.com/release/31555774-Hanna-Ferm-Mellanrum" target="_blank" class="preorder-btn w-full text-sm py-2">
+                            GET ACCESS
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Om Jag Inte Kan Leva Med Dig Varför Dör Jag Då Utan Dig (2024) -->
+                <div class="product-card rounded-xl overflow-hidden border border-gray-800" data-aos="fade-up" data-aos-delay="700">
+                    <div class="h-48 bg-gradient-to-br from-pink-600 to-red-600 flex items-center justify-center">
+                        <img src="om-jag-inte-kan-leva.jpg" alt="Om Jag Inte Kan Leva Med Dig Varför Dör Jag Då Utan Dig" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-bold mb-1">Om Jag Inte Kan Leva Med Dig...</h3>
+                        <p class="text-sm text-gray-400 mb-1">2024</p>
+                        <p class="text-xs text-gray-500 mb-4 lowercase">pop</p>
+                        <p class="text-xs text-gray-600 mb-4">Produced by David Björk</p>
+                        <a href="https://www.discogs.com/release/31555840-Hanna-Ferm-Om-Jag-Inte-Kan-Leva-Med-Dig-Varf%C3%B6r-D%C3%B6r-Jag-D%C3%A5-Utan-Dig-" target="_blank" class="preorder-btn w-full text-sm py-2">
+                            GET ACCESS
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="py-12 bg-gray-950 border-t border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <!-- Social Media -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4 serif-heading">Connect</h3>
+                    <div class="flex space-x-4">
+                        <a href="https://open.spotify.com/artist/2xQUbkvQFCU8DpdBFbMfLq" target="_blank" class="text-2xl hover:text-pink-400 transition-colors">
+                            <i class="fab fa-spotify"></i>
+                        </a>
+                        <a href="https://www.youtube.com/channel/UCYTNvYtIhpPYAHWeDxktbWA" target="_blank" class="text-2xl hover:text-pink-400 transition-colors">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@hannaferm" target="_blank" class="text-2xl hover:text-pink-400 transition-colors">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                        <a href="https://www.instagram.com/hannaferms/?hl=en" target="_blank" class="text-2xl hover:text-pink-400 transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Newsletter -->
+                <div class="md:col-span-2">
+                    <h3 class="text-xl font-bold mb-4 serif-heading">Store Updates</h3>
+                    <p class="text-gray-400 mb-4">Get notified about new merch drops and limited editions</p>
+                    <form id="storeNewsletterForm" class="flex">
+                        <input type="email" placeholder="Enter your email" class="bg-gray-800 px-4 py-2 rounded-l-full flex-1 focus:outline-none focus:ring-2 focus:ring-pink-500" required>
+                        <button type="submit" class="accent-bg text-white px-6 py-2 rounded-r-full hover-scale">
+                            Subscribe
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Support -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4 serif-heading">Support</h3>
+                    <p class="text-gray-400 mb-2">Store inquiries:</p>
+                    <p class="text-gray-400">store@hannaferm.com</p>
+                    <p class="text-gray-400 mt-2">Shipping & Returns</p>
+                </div>
+            </div>
+            
+            <div class="text-center text-gray-500 pt-8 border-t border-gray-800">
+                <p>&copy; 2024 Hanna Ferm. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Floating Back Button -->
+    <a href="index.html#discography" class="floating-back-btn">
+        <i class="fas fa-arrow-left mr-2"></i> Back to Music
+    </a>
+    
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+        
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking on a link
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.remove('navbar-transparent');
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+                navbar.classList.add('navbar-transparent');
+            }
+        });
+        
+        // Store newsletter form submission
+        const storeNewsletterForm = document.getElementById('storeNewsletterForm');
+        storeNewsletterForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = e.target.querySelector('input[type="email"]').value;
+            if (email) {
+                // Create success message
+                const successMsg = document.createElement('div');
+                successMsg.className = 'fixed top-20 right-6 bg-green-500 text-white px-6 py-3 rounded-lg z-50';
+                successMsg.textContent = 'Thank you! You\'ll be notified about new merch drops.';
+                document.body.appendChild(successMsg);
+                
+                setTimeout(() => {
+                    successMsg.remove();
+                }, 3000);
+                
+                e.target.querySelector('input[type="email"]').value = '';
+            }
+        });
+        
+        // Add click handlers for preorder buttons
+        document.querySelectorAll('.preorder-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const productName = this.closest('.product-card').querySelector('h3').textContent;
+                const successMsg = document.createElement('div');
+                successMsg.className = 'fixed top-20 right-6 bg-pink-500 text-white px-6 py-3 rounded-lg z-50';
+                successMsg.textContent = `${productName} added to pre-order list!`;
+                document.body.appendChild(successMsg);
+                
+                setTimeout(() => {
+                    successMsg.remove();
+                }, 3000);
+            });
+        });
+    </script>
+</body>
+</html>
